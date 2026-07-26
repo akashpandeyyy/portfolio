@@ -73,63 +73,68 @@ if (contactForm) {
             formStatusMsg.className = 'form-status-msg';
             formStatusMsg.style.display = 'block';
             formStatusMsg.style.color = '#8a8a8a';
-            formStatusMsg.textContent = 'Saving message to Firebase Realtime Database...';
+            formStatusMsg.textContent = 'Sending message to Firebase...';
         }
 
-        try {
-            // Primary Target: Firebase Realtime Database -> User / {push_id} -> { email, name, number, subject, msg }
-            if (window.firebaseRtdb && window.firebaseRef && window.firebasePush && window.firebaseSet) {
+        const payload = {
+            email: email,
+            name: name,
+            number: number,
+            subject: subject,
+            msg: msg,
+            timestamp: new Date().toISOString()
+        };
+
+        let savedSuccessfully = false;
+
+        // 1. Try Cloud Firestore (Instant HTTP REST API connection)
+        if (window.firebaseDb && window.firebaseAddDoc && window.firebaseCollection) {
+            try {
+                await window.firebaseAddDoc(window.firebaseCollection(window.firebaseDb, "User"), payload);
+                savedSuccessfully = true;
+            } catch (fsErr) {
+                console.warn("Cloud Firestore save warning:", fsErr);
+            }
+        }
+
+        // 2. Try Realtime Database with 3.5s Timeout Race
+        if (window.firebaseRtdb && window.firebaseRef && window.firebasePush && window.firebaseSet) {
+            try {
                 const userRef = window.firebaseRef(window.firebaseRtdb, 'User');
                 const newUserRef = window.firebasePush(userRef);
 
-                await window.firebaseSet(newUserRef, {
-                    email: email,
-                    name: name,
-                    number: number,
-                    subject: subject,
-                    msg: msg
-                });
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('RTDB Timeout')), 3500)
+                );
 
-                if (formStatusMsg) {
-                    formStatusMsg.className = 'form-status-msg success';
-                    formStatusMsg.textContent = '✓ Message sent & saved to Firebase Realtime Database!';
-                }
-                contactForm.reset();
-            } else if (window.firebaseDb && window.firebaseAddDoc) {
-                // Secondary Fallback: Cloud Firestore
-                await window.firebaseAddDoc(window.firebaseCollection(window.firebaseDb, "User"), {
-                    email: email,
-                    name: name,
-                    number: number,
-                    subject: subject,
-                    msg: msg
-                });
-                if (formStatusMsg) {
-                    formStatusMsg.className = 'form-status-msg success';
-                    formStatusMsg.textContent = '✓ Message saved to Firebase!';
-                }
-                contactForm.reset();
-            } else {
-                // Active mailto intent fallback
-                const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage:\n${msg}`)}`;
-                if (formStatusMsg) {
-                    formStatusMsg.className = 'form-status-msg success';
-                    formStatusMsg.textContent = '✓ Opening email client to send message...';
-                }
-                setTimeout(() => { window.location.href = mailtoUrl; }, 400);
+                await Promise.race([
+                    window.firebaseSet(newUserRef, payload),
+                    timeoutPromise
+                ]);
+                savedSuccessfully = true;
+            } catch (rtdbErr) {
+                console.warn("Realtime DB save warning/timeout:", rtdbErr);
             }
-        } catch (err) {
-            console.error("Firebase Realtime DB submission error:", err);
+        }
+
+        if (savedSuccessfully) {
+            if (formStatusMsg) {
+                formStatusMsg.className = 'form-status-msg success';
+                formStatusMsg.textContent = '✓ Message sent & saved to Firebase successfully!';
+            }
+            contactForm.reset();
+        } else {
+            // Active Mailto Intent Fallback
             const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage:\n${msg}`)}`;
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg success';
                 formStatusMsg.textContent = '✓ Saved! Opening email client to complete sending...';
             }
             setTimeout(() => { window.location.href = mailtoUrl; }, 400);
-        } finally {
-            if (submitBtn) submitBtn.disabled = false;
-            if (btnText) btnText.textContent = 'Send Message →';
         }
+
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.textContent = 'Send Message →';
     });
 }
 
