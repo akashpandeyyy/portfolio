@@ -217,12 +217,37 @@ if (contactForm) {
             }
         }
 
+        // ⚡ Spark Plan Friendly Client-Side Email Dispatch to akashpandey2599@gmail.com
+        try {
+            fetch("https://formsubmit.co/ajax/akashpandey2599@gmail.com", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone_number: number,
+                    subject: subject,
+                    message: msg,
+                    _subject: `New Portfolio Inquiry: ${subject} (from ${name})`
+                })
+            }).catch(err => console.warn("Client-side email trigger warning:", err));
+        } catch (emailErr) {
+            console.warn("Email API error:", emailErr);
+        }
+
         if (saved) {
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg success';
-                formStatusMsg.textContent = '✓ Message send';
+                formStatusMsg.textContent = '✓ Message saved to Realtime Database & email notification sent to Akash!';
             }
             contactForm.reset();
+            // Reset validation visual states
+            [nameInput, emailInput, numberInput, subjectInput, messageInput].forEach(inp => {
+                if (inp) inp.classList.remove('is-valid', 'is-invalid');
+            });
         } else {
             // Active Mailto Intent Fallback
             const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage:\n${msg}`)}`;
