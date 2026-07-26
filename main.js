@@ -90,6 +90,31 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         .fromTo('#heroActions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2')
         .fromTo('#heroRight', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
 
+    /* Section Header Staggered Animations */
+    gsap.utils.toArray('.section-header').forEach(header => {
+        const eyebrow = header.querySelector('.section-eyebrow');
+        const title = header.querySelector('.section-title, .contact-headline');
+        const desc = header.querySelector('.section-desc, .contact-sub');
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: header,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+            }
+        });
+
+        if (eyebrow) {
+            tl.fromTo(eyebrow, { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' });
+        }
+        if (title) {
+            tl.fromTo(title, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, ease: 'power2.out' }, '-=0.3');
+        }
+        if (desc) {
+            tl.fromTo(desc, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' }, '-=0.3');
+        }
+    });
+
     /* Scroll reveals — staggered within each parent */
     function revealGroup(selector, options = {}) {
         const elems = gsap.utils.toArray(selector);
@@ -122,8 +147,8 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     revealGroup('.currently-card', { stagger: 0.1 });
     revealGroup('.active-intent-card', { stagger: 0.08, groupSize: 3 });
 
-    /* Generic .reveal */
-    gsap.utils.toArray('.reveal:not(.stat):not(.exp-item):not(.project-card):not(.skill-category):not(.process-step):not(.currently-card):not(.active-intent-card)').forEach(el => {
+    /* Generic .reveal (excluding already animated headers) */
+    gsap.utils.toArray('.reveal:not(.section-header):not(.stat):not(.exp-item):not(.project-card):not(.skill-category):not(.process-step):not(.currently-card):not(.active-intent-card)').forEach(el => {
         gsap.fromTo(el,
             { y: 32, opacity: 0 },
             {
