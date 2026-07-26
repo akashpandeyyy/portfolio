@@ -64,6 +64,10 @@
     <section class="hero" id="home" aria-label="Hero">
         <div class="hero-grid">
             <div class="hero-left">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Available for Android & FinTech roles</span>
+                </div>
                 <p class="hero-eyebrow" id="heroEyebrow">Android Developer · FinTech · Native Mobile</p>
                 <h1 class="hero-headline" id="heroHeadline">
                     Building Android<br />experiences that<br /><em>solve real problems.</em>
@@ -73,17 +77,17 @@
                 </p>
                 <div class="hero-actions" id="heroActions">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-ghost">Let's Talk →</a>
+                    <a href="mailto:akashpandey2599@gmail.com?subject=Let's%20Talk%20-%20Project%20Inquiry&body=Hi%20Akash,%0A%0AI%20would%20like%20to%20discuss%20an%20opportunity/project%20with%20you." class="btn btn-ghost">Let's Talk →</a>
                 </div>
             </div>
 
             <!-- Interactive App & FinTech Preview Mockup -->
             <div class="hero-right" id="heroRight">
-                <div class="phone-mockup">
+                <div class="phone-mockup" id="phoneMockup">
                     <div class="phone-screen">
                         <div class="phone-header">
                             <div class="phone-dot-green"></div>
-                            <span class="phone-title">FINTECH GATEWAY</span>
+                            <span class="phone-title">FINTECH GATEWAY v2.4</span>
                         </div>
                         <div class="phone-card">
                             <div class="phone-card-row">
@@ -171,17 +175,17 @@
             </div>
 
             <div class="about-cards reveal">
-                <div class="about-card">
+                <div class="about-card glow-card">
                     <div class="about-card-icon">📱</div>
                     <h4>Native Mobile Engineering</h4>
                     <p>Building high-performance Android UIs with Jetpack Compose & XML, adhering to Material Design 3 and Clean MVVM architecture.</p>
                 </div>
-                <div class="about-card">
+                <div class="about-card glow-card">
                     <div class="about-card-icon">💳</div>
                     <h4>FinTech & Banking Infrastructure</h4>
                     <p>AEPS, DMT, and BBPS integrations with strict transaction logging, OTP security, biometric auth, and zero-downtime retry logic.</p>
                 </div>
-                <div class="about-card">
+                <div class="about-card glow-card">
                     <div class="about-card-icon">🔌</div>
                     <h4>API & Backend Integration</h4>
                     <p>Connecting Android applications with Spring Boot, Retrofit, OkHttp, and Firebase Realtime Database for instant data sync.</p>
@@ -298,7 +302,7 @@
 
         <!-- 🥇 FEATURED PROJECT CARD: Gramin E-Bank -->
         <div class="projects-featured reveal">
-            <div class="featured-card">
+            <div class="featured-card glow-card">
                 <div class="featured-content">
                     <div>
                         <span class="project-tag">🥇 Featured FinTech App</span>
@@ -321,8 +325,8 @@
                             <span class="stack-pill">REST API</span>
                             <span class="stack-pill">MVVM</span>
                         </div>
-                        <div class="project-links">
-                            <a href="https://github.com/akashpandeyyy/portfolio" target="_blank" rel="noopener" class="btn btn-primary">View Project Repository →</a>
+                        <div class="project-meta-pill">
+                            <span>Production Banking App</span>
                         </div>
                     </div>
                 </div>
@@ -351,7 +355,7 @@
         <!-- OTHER PROJECTS GRID -->
         <div class="projects-grid">
             <!-- 🥈 TripMates -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">✈️</div>
                     <span class="project-rank">🥈 Travel App</span>
@@ -363,11 +367,10 @@
                     <span class="stack-pill">Google Maps API</span>
                     <span class="stack-pill">Firebase DB</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
 
             <!-- 🥉 Shree Assistant -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">🎙️</div>
                     <span class="project-rank">🥉 AI Voice</span>
@@ -379,29 +382,28 @@
                     <span class="stack-pill">Porcupine</span>
                     <span class="stack-pill">Speech API</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
 
             <!-- 🚀 TestJet -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">🧪</div>
                     <span class="project-rank">Architecture</span>
                 </div>
                 <h4>TestJet Framework</h4>
-                <p>Android testing & architecture showcase repository demonstrating robust unit testing, Compose previews, and Clean MVVM layers.</p>
+                <p>Android testing & architecture showcase framework demonstrating unit testing, Compose previews, and Clean MVVM layers.</p>
                 <div class="project-stack">
                     <span class="stack-pill">Kotlin</span>
                     <span class="stack-pill">Jetpack Compose</span>
                     <span class="stack-pill">JUnit / Mockk</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy/TestJet" target="_blank" rel="noopener" class="project-link-arrow">View Repository →</a>
             </article>
 
             <!-- Hotel Booking App -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">🏨</div>
+                    <span class="project-rank">Consumer App</span>
                 </div>
                 <h4>Hotel Booking App</h4>
                 <p>End-to-end hotel booking application with real-time room availability, filtering, and booking confirmation flows.</p>
@@ -410,13 +412,13 @@
                     <span class="stack-pill">REST API</span>
                     <span class="stack-pill">SQLite</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
 
             <!-- Job Portal App -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">💼</div>
+                    <span class="project-rank">Platform</span>
                 </div>
                 <h4>Job Portal App</h4>
                 <p>Mobile job board with advanced searching, candidate profile management, and recruiter application tracking.</p>
@@ -425,13 +427,13 @@
                     <span class="stack-pill">Firebase</span>
                     <span class="stack-pill">MVVM</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
 
             <!-- Spotify Clone -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">🎵</div>
+                    <span class="project-rank">Media App</span>
                 </div>
                 <h4>Spotify Clone UI</h4>
                 <p>Feature-rich music streaming UI with playback controls, custom playlists, and Android Media3 audio session integration.</p>
@@ -440,13 +442,13 @@
                     <span class="stack-pill">Media3</span>
                     <span class="stack-pill">Firebase</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
 
             <!-- Smart Zebra Crossing IoT -->
-            <article class="project-card reveal">
+            <article class="project-card reveal glow-card">
                 <div class="project-card-header">
                     <div class="project-card-icon">🤖</div>
+                    <span class="project-rank">IoT / Embedded</span>
                 </div>
                 <h4>Smart Zebra Crossing</h4>
                 <p>Arduino & C IoT pedestrian safety system featuring automated obstacle avoidance sensors and traffic signal controls.</p>
@@ -455,7 +457,6 @@
                     <span class="stack-pill">IoT</span>
                     <span class="stack-pill">C</span>
                 </div>
-                <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="project-link-arrow">View Code →</a>
             </article>
         </div>
     </section>
@@ -468,8 +469,7 @@
         </div>
 
         <div class="skills-grid">
-            <!-- 📱 Mobile -->
-            <div class="skill-category reveal">
+            <div class="skill-category reveal glow-card">
                 <div class="skill-cat-title">📱 Mobile Development</div>
                 <div class="skill-items">
                     <div class="skill-item">Android SDK</div>
@@ -482,8 +482,7 @@
                 </div>
             </div>
 
-            <!-- 🔌 Backend & APIs -->
-            <div class="skill-category reveal">
+            <div class="skill-category reveal glow-card">
                 <div class="skill-cat-title">🔌 Backend & APIs</div>
                 <div class="skill-items">
                     <div class="skill-item">REST APIs</div>
@@ -496,8 +495,7 @@
                 </div>
             </div>
 
-            <!-- 🗄️ Database -->
-            <div class="skill-category reveal">
+            <div class="skill-category reveal glow-card">
                 <div class="skill-cat-title">🗄️ Database</div>
                 <div class="skill-items">
                     <div class="skill-item">SQLite</div>
@@ -508,20 +506,18 @@
                 </div>
             </div>
 
-            <!-- 🛠️ Tools -->
-            <div class="skill-category reveal">
+            <div class="skill-category reveal glow-card">
                 <div class="skill-cat-title">🛠️ Developer Tools</div>
                 <div class="skill-items">
                     <div class="skill-item">Android Studio</div>
                     <div class="skill-item">Git</div>
-                    <div class="skill-item">GitHub</div>
                     <div class="skill-item">Postman API Client</div>
                     <div class="skill-item">Firebase Console</div>
+                    <div class="skill-item">Figma UI</div>
                 </div>
             </div>
 
-            <!-- 💡 Fundamentals -->
-            <div class="skill-category reveal">
+            <div class="skill-category reveal glow-card">
                 <div class="skill-cat-title">💡 Fundamentals</div>
                 <div class="skill-items">
                     <div class="skill-item">Data Structures & Algo (DSA)</div>
@@ -543,31 +539,31 @@
         </div>
 
         <div class="process-grid">
-            <div class="process-step reveal">
+            <div class="process-step reveal glow-card">
                 <div class="process-num">01</div>
                 <div class="process-icon">🔍</div>
                 <h4>Understand</h4>
                 <p>Dig deep into business requirements, user needs, and security constraints before writing code.</p>
             </div>
-            <div class="process-step reveal">
+            <div class="process-step reveal glow-card">
                 <div class="process-num">02</div>
                 <div class="process-icon">📐</div>
                 <h4>Plan</h4>
                 <p>Design the MVVM architecture, database schemas, and API request/response contracts.</p>
             </div>
-            <div class="process-step reveal">
+            <div class="process-step reveal glow-card">
                 <div class="process-num">03</div>
                 <div class="process-icon">⚙️</div>
                 <h4>Build</h4>
                 <p>Develop modular, clean, and testable code using Jetpack Compose, Kotlin, and Retrofit.</p>
             </div>
-            <div class="process-step reveal">
+            <div class="process-step reveal glow-card">
                 <div class="process-num">04</div>
                 <div class="process-icon">🧪</div>
                 <h4>Test</h4>
                 <p>Profile performance, test edge cases, handle network failures, and eliminate memory leaks.</p>
             </div>
-            <div class="process-step reveal">
+            <div class="process-step reveal glow-card">
                 <div class="process-num">05</div>
                 <div class="process-icon">🚀</div>
                 <h4>Deliver</h4>
@@ -584,12 +580,12 @@
         </div>
 
         <div class="currently-grid">
-            <div class="currently-card reveal">
+            <div class="currently-card reveal glow-card">
                 <div class="currently-card-label">🔨 Working on</div>
                 <h3>FinTech solutions & Android architecture</h3>
                 <p>Building production-grade banking workflows (AEPS/DMT/BBPS) with Jetpack Compose and hardening MVVM patterns for high-reliability mobile apps.</p>
             </div>
-            <div class="currently-card reveal">
+            <div class="currently-card reveal glow-card">
                 <div class="currently-card-label">📖 Learning</div>
                 <h3>Advanced Architecture & System Design</h3>
                 <p>Deepening expertise in multi-module Android architecture, system design for mobile, and scalable backend integrations with Spring Boot.</p>
@@ -599,39 +595,72 @@
 
     <!-- ─── CONTACT ──────────────────────────────────────────────────── -->
     <section id="contact" aria-label="Contact">
-        <p class="section-eyebrow" style="margin-bottom: var(--space-4);">Contact / Let's Work Together</p>
-        <h2 class="contact-headline reveal">
-            Have an idea?<br /><em>Let's build something useful.</em>
-        </h2>
-        <p class="contact-sub reveal">Open to full-time Android & full-stack roles, FinTech projects, and freelance contracts.</p>
-
-        <div class="contact-actions reveal">
-            <a href="mailto:akashpandey2599@gmail.com" class="btn btn-primary">Email Me →</a>
-            <a href="https://www.linkedin.com/in/akshpandeyyyyy01/" target="_blank" rel="noopener" class="btn btn-ghost">Book a Call / Connect</a>
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Contact / Let's Work Together</p>
+            <h2 class="contact-headline">
+                Have an idea?<br /><em>Let's build something useful.</em>
+            </h2>
+            <p class="contact-sub">Open to full-time Android & full-stack roles, FinTech projects, and freelance contracts.</p>
         </div>
 
-        <!-- Direct Contact Cards -->
+        <!-- Direct Native Action Cards -->
         <div class="contact-cards-grid reveal">
-            <a href="mailto:akashpandey2599@gmail.com" class="contact-card">
+            <!-- Native Email Intent -->
+            <a href="mailto:akashpandey2599@gmail.com?subject=Project%20Inquiry%20-%20Akash%20Pandey&body=Hi%20Akash,%0A%0AI%20would%20like%20to%20discuss%20a%20project%20or%20opportunity%20with%20you." class="contact-card active-intent-card">
                 <div class="contact-card-icon">✉️</div>
-                <div class="contact-card-label">EMAIL</div>
+                <div class="contact-card-label">EMAIL ME</div>
                 <div class="contact-card-val">akashpandey2599@gmail.com</div>
+                <span class="intent-badge">Opens Email App ↗</span>
             </a>
-            <a href="https://www.linkedin.com/in/akshpandeyyyyy01/" target="_blank" rel="noopener" class="contact-card">
+
+            <!-- Native Phone Call Intent -->
+            <a href="tel:+919165337177" class="contact-card active-intent-card">
+                <div class="contact-card-icon">📞</div>
+                <div class="contact-card-label">CALL ME</div>
+                <div class="contact-card-val">+91 91653 37177</div>
+                <span class="intent-badge">Opens Phone App ↗</span>
+            </a>
+
+            <!-- LinkedIn Intent -->
+            <a href="https://www.linkedin.com/in/akshpandeyyyyy01/" target="_blank" rel="noopener" class="contact-card active-intent-card">
                 <div class="contact-card-icon">💼</div>
                 <div class="contact-card-label">LINKEDIN</div>
                 <div class="contact-card-val">akshpandeyyyyy01</div>
+                <span class="intent-badge">Opens LinkedIn ↗</span>
             </a>
-            <a href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" class="contact-card">
-                <div class="contact-card-icon">🐙</div>
-                <div class="contact-card-label">GITHUB</div>
-                <div class="contact-card-val">akashpandeyyy</div>
-            </a>
-            <a href="tel:+919165337177" class="contact-card">
-                <div class="contact-card-icon">📞</div>
-                <div class="contact-card-label">PHONE</div>
-                <div class="contact-card-val">+91 91653 37177</div>
-            </a>
+        </div>
+
+        <!-- Interactive Direct Message Form -->
+        <div class="contact-form-container reveal glow-card">
+            <h3>Send a Direct Message</h3>
+            <p>Fill out the form below to initiate an active email inquiry directly to my inbox.</p>
+
+            <form id="portfolioContactForm" class="contact-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="userName">YOUR NAME</label>
+                        <input type="text" id="userName" name="name" placeholder="Recruiter / Founder" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">YOUR EMAIL</label>
+                        <input type="email" id="userEmail" name="email" placeholder="you@company.com" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userSubject">SUBJECT</label>
+                    <input type="text" id="userSubject" name="subject" placeholder="Role opportunity / Project inquiry" required />
+                </div>
+                <div class="form-group">
+                    <label for="userMessage">MESSAGE</label>
+                    <textarea id="userMessage" name="message" rows="4" placeholder="Tell me about the role, project requirements, or timelines…" required></textarea>
+                </div>
+
+                <button type="submit" id="submitFormBtn" class="btn btn-primary btn-submit">
+                    <span class="btn-text">Send Message →</span>
+                    <span class="btn-spinner" style="display: none;"></span>
+                </button>
+                <div id="formStatusMsg" class="form-status-msg" aria-live="polite"></div>
+            </form>
         </div>
     </section>
 

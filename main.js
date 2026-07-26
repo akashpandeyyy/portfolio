@@ -41,6 +41,41 @@ if (burger && mobileMenu) {
     });
 }
 
+/* ── Contact Form Active Intent Handler ── */
+const contactForm = document.getElementById('portfolioContactForm');
+const formStatusMsg = document.getElementById('formStatusMsg');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('userName')?.value.trim() || '';
+        const email = document.getElementById('userEmail')?.value.trim() || '';
+        const subject = document.getElementById('userSubject')?.value.trim() || 'Project Inquiry';
+        const message = document.getElementById('userMessage')?.value.trim() || '';
+
+        if (!name || !email || !message) {
+            if (formStatusMsg) {
+                formStatusMsg.className = 'form-status-msg error';
+                formStatusMsg.textContent = 'Please fill out your name, email, and message.';
+            }
+            return;
+        }
+
+        // Active Intent: Trigger mailto link with encoded user inputs
+        const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+
+        if (formStatusMsg) {
+            formStatusMsg.className = 'form-status-msg success';
+            formStatusMsg.textContent = '✓ Opening your email client to send the message directly to Akash...';
+        }
+
+        setTimeout(() => {
+            window.location.href = mailtoUrl;
+        }, 400);
+    });
+}
+
 /* ── GSAP Animations ── */
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -48,7 +83,8 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     /* Hero entrance */
     const heroTl = gsap.timeline({ delay: 0.1 });
     heroTl
-        .fromTo('#heroEyebrow', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' })
+        .fromTo('.status-indicator', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' })
+        .fromTo('#heroEyebrow', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.3')
         .fromTo('#heroHeadline', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, '-=0.2')
         .fromTo('#heroSub', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
         .fromTo('#heroActions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2')
@@ -84,10 +120,10 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     revealGroup('.skill-category', { stagger: 0.07, groupSize: 5 });
     revealGroup('.process-step', { stagger: 0.07, groupSize: 5 });
     revealGroup('.currently-card', { stagger: 0.1 });
-    revealGroup('.contact-card', { stagger: 0.08, groupSize: 4 });
+    revealGroup('.active-intent-card', { stagger: 0.08, groupSize: 3 });
 
-    /* Generic .reveal (section headers, about, featured card, etc.) */
-    gsap.utils.toArray('.reveal:not(.stat):not(.exp-item):not(.project-card):not(.skill-category):not(.process-step):not(.currently-card):not(.contact-card)').forEach(el => {
+    /* Generic .reveal */
+    gsap.utils.toArray('.reveal:not(.stat):not(.exp-item):not(.project-card):not(.skill-category):not(.process-step):not(.currently-card):not(.active-intent-card)').forEach(el => {
         gsap.fromTo(el,
             { y: 32, opacity: 0 },
             {
@@ -104,7 +140,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         );
     });
 
-    /* Phone mockup subtle float */
+    /* Phone mockup subtle float & tilt animation */
     const phone = document.querySelector('.phone-mockup');
     if (phone) {
         gsap.to(phone, {
