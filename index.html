@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akash Pandey — Android & FinTech Developer | Kotlin · Java · Spring Boot</title>
+  <meta name="description"
+    content="Akash Pandey — 2-year Android & Java Backend Developer specializing in FinTech (AEPS, DMT, BBPS). Expert in Kotlin, Jetpack Compose, Spring Boot. Available for Android & full-stack roles.">
+  <meta name="keywords"
+    content="Akash Pandey, Android Developer, FinTech, Kotlin, Java, Spring Boot, AEPS, DMT, BBPS, Jetpack Compose, Portfolio">
+  <meta name="author" content="Akash Pandey">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Akash Pandey — Android & FinTech Developer">
+  <meta property="og:description"
+    content="Building secure banking apps that move real money, reliably. 2 yrs exp · Kotlin · Java · Spring Boot · FinTech.">
+  <meta property="og:type" content="website">
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Navigation menu" aria-hidden="true">
+    <a href="#about" id="mm-about" onclick="closeMobileMenu()">About</a>
+    <a href="#experience" id="mm-exp" onclick="closeMobileMenu()">Experience</a>
+    <a href="#projects" id="mm-proj" onclick="closeMobileMenu()">Projects</a>
+    <a href="#education" id="mm-edu" onclick="closeMobileMenu()">Education</a>
+    <a href="#contact" id="mm-contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header id="site-header">
+    <nav class="wrap">
+      <a class="logo" href="#top" id="nav-logo" aria-label="Akash Pandey — go to top">
+        <span class="logo-dot" aria-hidden="true"></span>
+        AKASH PANDEY
+      </a>
+
+      <div class="navlinks" role="navigation" aria-label="Main navigation">
+        <a href="#about" id="nav-about">About</a>
+        <a href="#experience" id="nav-experience">Experience</a>
+        <a href="#projects" id="nav-projects">Projects</a>
+        <a href="#education" id="nav-education">Education</a>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-gh" href="https://github.com/akashpandeyyy" target="_blank" rel="noopener" id="nav-github"
+          aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.68.83.56C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          GitHub
+        </a>
+        <a class="nav-cta" href="#contact" id="nav-cta">Get in Touch</a>
+      </div>
+
+      <button class="nav-ham" id="nav-ham" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="top" class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="wrap hero-grid">
+      <!-- Left: Content -->
+      <div class="hero-left">
+        <div class="eyebrow">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          ANDROID · JAVA BACKEND · FINTECH
+        </div>
+
+        <h1 class="hero-headline">
+          Hi, I'm <span class="name-accent">Akash</span><br>Pandey
+        </h1>
+
+        <div class="typewriter-row" aria-live="polite">
+          <span class="typewriter-prefix">I build</span>
+          <span class="typewriter-text" id="typewriter-text"></span><span class="typewriter-cursor"
+            aria-hidden="true"></span>
+        </div>
+
+        <p class="hero-lead">
+          2-year Android &amp; Java backend developer focused on FinTech infrastructure —
+          AEPS, DMT &amp; BBPS flows where a failed transaction is never an option.
+          Based in Noida. Open to Android, full-stack &amp; remote roles.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects" id="hero-cta-projects">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            View Projects
+          </a>
+          <a class="btn btn-ghost" href="#contact" id="hero-cta-contact">Get in Touch →</a>
+        </div>
+
+        <div class="hero-stats" id="hero-stats">
+          <div class="stat">
+            <span class="stat-num counter" data-target="2">0</span><span class="stat-num">+ yrs</span>
+            <span class="stat-label">Experience</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num counter" data-target="9">0</span><span class="stat-num">+</span>
+            <span class="stat-label">Apps Shipped</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num counter" data-target="40">0</span><span class="stat-num">%</span>
+            <span class="stat-label">Latency Cut</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num counter" data-target="3">0</span>
+            <span class="stat-label">FinTech APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Transaction Terminal -->
+      <div class="terminal-wrap">
+        <div class="terminal" id="hero-terminal" role="img" aria-label="Live FinTech transaction terminal demo">
+          <!-- Mac-style top bar -->
+          <div class="terminal-header">
+            <div class="terminal-dots" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="terminal-badge">FINTECH GATEWAY v2.4</div>
+          </div>
+
+          <div class="txn-type">DOMESTIC MONEY TRANSFER</div>
+          <div class="txn-amount"><sup>₹</sup>12,450<span class="paise">.00</span></div>
+          <div class="txn-id">TXN · AEPS8827X4KM · UTC+5:30</div>
+
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill"></div>
+          </div>
+
+          <div class="txn-status">
+            <div class="status-dot" aria-hidden="true"></div>
+            <span>PROCESSING — OTP VERIFIED</span>
+          </div>
+
+          <div class="txn-grid">
+            <div>
+              <div class="txn-field-label">SENDER</div>
+              <div class="txn-field-value">●●●● 4782</div>
+            </div>
+            <div>
+              <div class="txn-field-label">RECEIVER</div>
+              <div class="txn-field-value">●●●● 9134</div>
+            </div>
+            <div>
+              <div class="txn-field-label">CHANNEL</div>
+              <div class="txn-field-value">AEPS/IMPS</div>
+            </div>
+            <div>
+              <div class="txn-field-label">STATUS</div>
+              <div class="txn-field-value green">SETTLED ✓</div>
+            </div>
+          </div>
+
+          <div class="terminal-log" aria-hidden="true">
+            <div class="log-line"><span class="log-tag">SYS</span> Encrypted end-to-end · AES-256</div>
+            <div class="log-line"><span class="log-tag">API</span> Bank API responded in 214ms</div>
+            <div class="log-line log-typing"><span class="log-tag">SDK</span> Jetpack Compose · MVVM · Retrofit</div>
+          </div>
+
+          <div class="float-badge float-badge-1" aria-hidden="true">⚡ 214ms latency</div>
+          <div class="float-badge float-badge-2" aria-hidden="true">🔒 AES-256 encrypted</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about">
+    <div class="wrap section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">01</span>
+        <span class="section-title">About</span>
+        <span class="section-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p><strong>I build the full stack behind payment infrastructure</strong> — the Android layer where
+            a tap must turn into a correct, auditable transaction, and the Java backend behind it too.
+            Currently at a FinTech company, I develop applications covering Aadhaar Enabled Payment System (AEPS),
+            Domestic Money Transfer (DMT), and Bharat Bill Payment System (BBPS), integrating financial APIs
+            with strict error handling and data validation.</p>
+
+          <p>Alongside Android, I've built backend skills with <strong>Spring Boot and JDBC</strong> for service-layer
+            and database work. Before my current role, at Shrap Web Technology, I worked on OTP-based authentication
+            and real-time transfer modules — cutting transaction latency by <strong>40%</strong> through async
+            processing and caching. I've also freelanced on UI-heavy consumer apps, so I'm comfortable
+            owning a screen end-to-end or hardening a payment flow.</p>
+
+          <p>I care about <strong>clean MVVM architecture</strong>, Material Design done properly, and code that
+            doesn't fall over the one time it matters — a failed bank transfer.</p>
+
+          <div class="about-tags">
+            <span class="about-tag">MVVM Architecture</span>
+            <span class="about-tag">FinTech APIs</span>
+            <span class="about-tag">Payment Security</span>
+            <span class="about-tag">Async Processing</span>
+            <span class="about-tag">Material Design</span>
+            <span class="about-tag">REST APIs</span>
+            <span class="about-tag">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="skills-panel reveal-right">
+          <!-- Skill Tab Navigation -->
+          <div class="skill-category" role="tablist" aria-label="Skill categories">
+            <button class="skill-tab active" id="tab-android" role="tab" aria-selected="true"
+              aria-controls="panel-android" onclick="switchTab('android')">Android</button>
+            <button class="skill-tab" id="tab-backend" role="tab" aria-selected="false" aria-controls="panel-backend"
+              onclick="switchTab('backend')">Backend</button>
+            <button class="skill-tab" id="tab-langs" role="tab" aria-selected="false" aria-controls="panel-langs"
+              onclick="switchTab('langs')">Languages</button>
+          </div>
+
+          <!-- Android Panel -->
+          <div id="panel-android" class="skill-bars" role="tabpanel" aria-labelledby="tab-android">
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Jetpack Compose</span>
+                <span class="skill-bar-pct">88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="88"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Android SDK / MVVM</span>
+                <span class="skill-bar-pct">90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="90"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Retrofit / REST</span>
+                <span class="skill-bar-pct">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="85"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Firebase (Auth/DB/FCM)</span>
+                <span class="skill-bar-pct">82%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill rose" data-width="82"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Room / SQLite</span>
+                <span class="skill-bar-pct">78%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill warm" data-width="78"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend Panel (hidden by default) -->
+          <div id="panel-backend" class="skill-bars" role="tabpanel" aria-labelledby="tab-backend"
+            style="display:none;">
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Spring Boot</span>
+                <span class="skill-bar-pct">75%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="75"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">JDBC / MySQL</span>
+                <span class="skill-bar-pct">78%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="78"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">REST API Design</span>
+                <span class="skill-bar-pct">82%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill rose" data-width="82"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">FinTech Integration</span>
+                <span class="skill-bar-pct">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill warm" data-width="85"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Languages Panel (hidden by default) -->
+          <div id="panel-langs" class="skill-bars" role="tabpanel" aria-labelledby="tab-langs" style="display:none;">
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Kotlin</span>
+                <span class="skill-bar-pct">90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="90"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">Java</span>
+                <span class="skill-bar-pct">88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="88"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">SQL</span>
+                <span class="skill-bar-pct">80%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill rose" data-width="80"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">HTML / CSS / JS</span>
+                <span class="skill-bar-pct">72%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill warm" data-width="72"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-meta">
+                <span class="skill-bar-name">PHP / XML</span>
+                <span class="skill-bar-pct">60%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill violet" data-width="60"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE
+  ============================================================ -->
+  <section id="experience">
+    <div class="wrap section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">02</span>
+        <span class="section-title">Experience</span>
+        <span class="section-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="timeline">
+
+        <!-- Softmint -->
+        <div class="tl-item reveal" id="exp-softmint">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Android Developer</div>
+                <div class="tl-org">Softmint Digital Service Pvt. Ltd.</div>
+              </div>
+              <div class="tl-date">FEB 2026 — PRESENT</div>
+            </div>
+            <div class="tl-pills">
+              <span class="tl-pill">AEPS</span>
+              <span class="tl-pill">DMT</span>
+              <span class="tl-pill">BBPS</span>
+              <span class="tl-pill">Jetpack Compose</span>
+              <span class="tl-pill">Java</span>
+              <span class="tl-pill">Kotlin</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Building high-demand banking features — AEPS, DMT and BBPS — in Java and Jetpack Compose (Kotlin),
+                handling live transactions for real users.</li>
+              <li>Integrating complex financial APIs with robust error handling, validation, and retry logic for secure,
+                real-time transaction processing.</li>
+              <li>Architecting responsive Jetpack Compose UIs following Material Design 3 for critical payment flows,
+                reducing UI-related drop-offs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Shrap -->
+        <div class="tl-item reveal" id="exp-shrap">
+          <div class="tl-dot rose-dot" aria-hidden="true"></div>
+          <div class="tl-card rose-card">
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Android Developer</div>
+                <div class="tl-org rose-org">Shrap Web Technology</div>
+              </div>
+              <div class="tl-date">OCT 2025 — FEB 2026</div>
+            </div>
+            <div class="tl-pills">
+              <span class="tl-pill rose-pill">OTP Auth</span>
+              <span class="tl-pill rose-pill">REST APIs</span>
+              <span class="tl-pill rose-pill">Async Processing</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Integrated third-party and in-house REST APIs for secure financial transactions and OTP-based
+                authentication.</li>
+              <li>Implemented real-time money transfer modules, reducing transaction latency by <span
+                  class="tl-highlight">40%</span> through async processing and caching.</li>
+              <li>Improved overall app performance via asynchronous processing, caching, and optimised API calls.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Iconicpage -->
+        <div class="tl-item reveal" id="exp-iconic">
+          <div class="tl-dot warm-dot" aria-hidden="true"></div>
+          <div class="tl-card warm-card">
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Android Developer</div>
+                <div class="tl-org warm-org">Iconicpage</div>
+              </div>
+              <div class="tl-date">AUG 2024 — JUL 2025</div>
+            </div>
+            <div class="tl-pills">
+              <span class="tl-pill warm-pill">Java</span>
+              <span class="tl-pill warm-pill">Firebase</span>
+              <span class="tl-pill warm-pill">Agile / Scrum</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Built production-ready Android apps using Java, XML, Android SDK and Firebase services.</li>
+              <li>Designed responsive UI/UX following Material Design principles, increasing engagement by <span
+                  class="tl-highlight">25%</span>.</li>
+              <li>Collaborated in Scrum-based Agile teams with daily stand-ups and sprint planning.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Freelance -->
+        <div class="tl-item reveal" id="exp-freelance">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-head">
+              <div>
+                <div class="tl-role">Freelance Android Developer</div>
+                <div class="tl-org">Self-Employed · Remote</div>
+              </div>
+              <div class="tl-date">JAN 2024 — AUG 2025</div>
+            </div>
+            <div class="tl-pills">
+              <span class="tl-pill">5+ Apps</span>
+              <span class="tl-pill">MVVM</span>
+              <span class="tl-pill">Firebase</span>
+              <span class="tl-pill">95%+ Satisfaction</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Developed and delivered 5+ Android applications using Java, Firebase, MVVM and Material Design for
+                clients across sectors.</li>
+              <li>Implemented Retrofit, REST APIs, Firebase Auth and Firestore for scalable backend communication.</li>
+              <li>Worked directly with clients in Agile sprints, achieving <span class="tl-highlight">95%+</span> client
+                satisfaction.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS
+  ============================================================ -->
+  <section id="projects">
+    <div class="wrap section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">03</span>
+        <span class="section-title">Projects</span>
+        <span class="section-line" aria-hidden="true"></span>
+        <span id="proj-live-badge" class="tl-pill" style="display:none; margin-left:4px;">● LIVE</span>
+      </div>
+
+      <div id="proj-grid" class="proj-bento stagger">
+
+        <!-- Card 1: Gramin E-Bank -->
+        <div class="proj-card reveal" id="proj-gramin">
+          <div class="proj-card-top">
+            <div class="proj-icon" aria-hidden="true">🏦</div>
+            <span class="proj-tag">FINTECH</span>
+          </div>
+          <h3>Gramin E-Bank</h3>
+          <p>Secure rural e-banking app with fund transfers, transaction history, biometric auth, and offline caching
+            for low-connectivity areas. Built for Tier-3 banking access.</p>
+          <div class="proj-stack">
+            <span>Java</span><span>Android SDK</span><span>Firebase</span><span>SQLite</span><span>Retrofit</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/akashpandeyyy" target="_blank" rel="noopener"
+              id="proj-gramin-gh" aria-label="View Gramin E-Bank on GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.68.83.56C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: BBPS Payment Suite -->
+        <div class="proj-card reveal" id="proj-bbps">
+          <div class="proj-card-top">
+            <div class="proj-icon rose-icon" aria-hidden="true">⚡</div>
+            <span class="proj-tag">PAYMENTS</span>
+          </div>
+          <h3>BBPS Payment Suite</h3>
+          <p>Bharat Bill Payment System Android module with multi-biller support, real-time status updates, and a
+            fault-tolerant retry engine for failed transactions.</p>
+          <div class="proj-stack">
+            <span>Kotlin</span><span>Jetpack Compose</span><span>BBPS API</span><span>Room</span><span>Coroutines</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/akashpandeyyy" target="_blank" rel="noopener"
+              id="proj-bbps-gh" aria-label="View BBPS project on GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.68.83.56C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: TripMates -->
+        <div class="proj-card reveal" id="proj-tripmates">
+          <div class="proj-card-top">
+            <div class="proj-icon warm-icon" aria-hidden="true">🗺️</div>
+            <span class="proj-tag">TRAVEL &amp; MAPS</span>
+          </div>
+          <h3>TripMates</h3>
+          <p>Real-time travel &amp; location-sharing app with live GPS tracking, in-app chat, and Google Maps–based
+            group navigation for planned trips.</p>
+          <div class="proj-stack">
+            <span>Java</span><span>Firebase Realtime DB</span><span>Google Maps API</span><span>FCM</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/akashpandeyyy" target="_blank" rel="noopener"
+              id="proj-tripmates-gh" aria-label="View TripMates on GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.68.83.56C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              View Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Voice Assistant -->
+        <div class="proj-card reveal" id="proj-voice">
+          <div class="proj-card-top">
+            <div class="proj-icon" aria-hidden="true">🎙️</div>
+            <span class="proj-tag">IN PROGRESS</span>
+          </div>
+          <h3>Voice Assistant</h3>
+          <p>Custom Android voice assistant with wake-word detection, context-aware command handling, and personalized
+            response engine built on Android's Speech Recognition API.</p>
+          <div class="proj-stack">
+            <span>Java</span><span>Android Speech API</span><span>NLP</span><span>Coroutines</span>
+          </div>
+          <div class="proj-links">
+            <span class="proj-wip">🚧 In Development</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EDUCATION
+  ============================================================ -->
+  <section id="education">
+    <div class="wrap section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">04</span>
+        <span class="section-title">Education &amp; Leadership</span>
+        <span class="section-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="edu-grid stagger">
+        <!-- B.Tech -->
+        <div class="edu-card reveal" id="edu-btech">
+          <div class="edu-icon" aria-hidden="true">🎓</div>
+          <div class="edu-content">
+            <h4>B.Tech — Computer Science Engineering</h4>
+            <div class="edu-org">Samat Vikramaditya University, Ujjain, MP</div>
+            <div class="edu-date">Expected 2027</div>
+          </div>
+        </div>
+
+        <!-- Diploma -->
+        <div class="edu-card reveal" id="edu-diploma">
+          <div class="edu-icon" aria-hidden="true">📜</div>
+          <div class="edu-content">
+            <h4>Engineering Diploma — Computer Science</h4>
+            <div class="edu-org">Govt. Polytechnic College, Sidhi · RGPV Bhopal</div>
+            <div class="edu-date">2021 — 2024</div>
+            <div class="edu-gpa">⭐ GPA 7.6 / 10</div>
+          </div>
+        </div>
+
+        <!-- Leadership -->
+        <div class="leader-card reveal" id="edu-leadership" style="grid-column: 1 / -1;">
+          <h4>Leadership &amp; Activities</h4>
+          <ul class="leader-list">
+            <li>Coordinator of the College Coding Club — conducted workshops on Java, DSA and Android development for
+              50+ students.</li>
+            <li>Managed college Instagram presence, growing engagement by <strong>200%</strong> through strategic
+              content and consistent posting.</li>
+            <li>State-level debate participant with strong communication and problem-solving skills.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact">
+    <div class="wrap section-wrap">
+      <div class="section-head reveal">
+        <span class="section-num">05</span>
+        <span class="section-title">Let's Connect</span>
+        <span class="section-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="contact-split">
+        <!-- Left: CTA + Socials -->
+        <div class="contact-cta reveal-left">
+          <div class="availability-badge" id="avail-badge">
+            <span class="avail-dot" aria-hidden="true"></span>
+            Available for new opportunities
+          </div>
+
+          <h2>Let's build something reliable<span style="color:var(--mint)">.</span></h2>
+          <p>Open to Android &amp; full-stack roles, FinTech projects, and freelance contracts.
+            Based in Noida, UP — happy to work remote too. MNCs and product companies welcome.</p>
+
+          <div class="contact-socials" role="list">
+            <a class="social-link" href="mailto:akashpandey2599@gmail.com" id="contact-email" role="listitem"
+              aria-label="Send email to Akash">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+              </div>
+              <div>
+                <span class="social-text-label">EMAIL</span>
+                akashpandey2599@gmail.com
+              </div>
+            </a>
+
+            <a class="social-link" href="tel:+919165337177" id="contact-phone" role="listitem" aria-label="Call Akash">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z" />
+                </svg>
+              </div>
+              <div>
+                <span class="social-text-label">PHONE</span>
+                +91 91653 37177
+              </div>
+            </a>
+
+            <a class="social-link" href="https://www.linkedin.com/in/akshpandeyyyyy01/" target="_blank" rel="noopener"
+              id="contact-linkedin" role="listitem" aria-label="LinkedIn profile">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zm2-4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                </svg>
+              </div>
+              <div>
+                <span class="social-text-label">LINKEDIN</span>
+                akshpandeyyyyy01
+              </div>
+            </a>
+
+            <a class="social-link" href="https://github.com/akashpandeyyy" target="_blank" rel="noopener"
+              id="contact-github" role="listitem" aria-label="GitHub profile">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.82 1.22 1.82 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.6-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.68.83.56C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+              </div>
+              <div>
+                <span class="social-text-label">GITHUB</span>
+                akashpandeyyy
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-panel reveal-right">
+          <h3>Send a Message</h3>
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cf-name">YOUR NAME</label>
+                <input class="form-input" type="text" id="cf-name" name="name" placeholder="Recruiter / Founder"
+                  required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cf-email">EMAIL</label>
+                <input class="form-input" type="email" id="cf-email" name="email" placeholder="you@company.com" required
+                  autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-message">MESSAGE</label>
+              <textarea class="form-input" id="cf-message" name="message" rows="5"
+                placeholder="Tell me about the role / project…" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="cf-submit">Send Message →</button>
+            <p id="cf-status" class="cf-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="wrap footer-inner">
+      <p class="footer-copy">© 2024 <span>Akash Pandey</span></p>
+      <button class="back-top" id="back-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Scroll to top">
+        ↑ Back to top
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+
+  <!--
+  ================================================================
+  FIREBASE REALTIME INTEGRATION
+  Contact form → /messages  |  Projects ← /projects
+  Setup: see firebase-services.js for instructions.
+  ================================================================
+  -->
+  <script type="module" src="firebase-services.js"></script>
+
+</body>
+
+</html>
