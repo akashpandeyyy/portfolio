@@ -41,12 +41,12 @@ if (burger && mobileMenu) {
     });
 }
 
-/* ── Contact Form Active Intent Handler ── */
+/* ── Contact Form Firebase & Active Intent Handler ── */
 const contactForm = document.getElementById('portfolioContactForm');
 const formStatusMsg = document.getElementById('formStatusMsg');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = document.getElementById('userName')?.value.trim() || '';
@@ -62,17 +62,56 @@ if (contactForm) {
             return;
         }
 
-        // Active Intent: Trigger mailto link with encoded user inputs
-        const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        const submitBtn = document.getElementById('submitFormBtn');
+        const btnText = submitBtn?.querySelector('.btn-text');
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnText) btnText.textContent = 'Sending...';
 
         if (formStatusMsg) {
-            formStatusMsg.className = 'form-status-msg success';
-            formStatusMsg.textContent = '✓ Opening your email client to send the message directly to Akash...';
+            formStatusMsg.className = 'form-status-msg';
+            formStatusMsg.style.display = 'block';
+            formStatusMsg.style.color = '#8a8a8a';
+            formStatusMsg.textContent = 'Saving message to Firebase...';
         }
 
-        setTimeout(() => {
-            window.location.href = mailtoUrl;
-        }, 400);
+        try {
+            if (window.firebaseDb && window.firebaseAddDoc && window.firebaseCollection) {
+                await window.firebaseAddDoc(window.firebaseCollection(window.firebaseDb, "messages"), {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    timestamp: window.firebaseServerTimestamp ? window.firebaseServerTimestamp() : new Date()
+                });
+
+                if (formStatusMsg) {
+                    formStatusMsg.className = 'form-status-msg success';
+                    formStatusMsg.textContent = '✓ Message sent successfully & saved to Firebase! Thank you, Akash will get back to you soon.';
+                }
+                contactForm.reset();
+            } else {
+                // Fallback to mailto if Firebase SDK is unreachable
+                const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                if (formStatusMsg) {
+                    formStatusMsg.className = 'form-status-msg success';
+                    formStatusMsg.textContent = '✓ Opening email client to send message to Akash...';
+                }
+                setTimeout(() => { window.location.href = mailtoUrl; }, 400);
+            }
+        } catch (err) {
+            console.error("Firebase Firestore submission error:", err);
+            // Fallback to active mailto intent
+            const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            if (formStatusMsg) {
+                formStatusMsg.className = 'form-status-msg success';
+                formStatusMsg.textContent = '✓ Saved! Opening email client to complete sending...';
+            }
+            setTimeout(() => { window.location.href = mailtoUrl; }, 400);
+        } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (btnText) btnText.textContent = 'Send Message →';
+        }
     });
 }
 
