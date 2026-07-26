@@ -56,27 +56,99 @@ if (burger && mobileMenu) {
     });
 }
 
-/* ── Contact Form Firebase Realtime DB & Active Intent Handler ── */
+/* ── Contact Form Real-Time Field Validation & Submit Handler ── */
 const contactForm = document.getElementById('portfolioContactForm');
 const formStatusMsg = document.getElementById('formStatusMsg');
+
+const nameInput = document.getElementById('userName');
+const emailInput = document.getElementById('userEmail');
+const numberInput = document.getElementById('userNumber');
+const subjectInput = document.getElementById('userSubject');
+const messageInput = document.getElementById('userMessage');
+
+const nameErr = document.getElementById('userNameError');
+const emailErr = document.getElementById('userEmailError');
+const numberErr = document.getElementById('userNumberError');
+const subjectErr = document.getElementById('userSubjectError');
+const messageErr = document.getElementById('userMessageError');
+
+const validators = {
+    name: (val) => val.length >= 2 && /^[a-zA-Z\s.'-]+$/.test(val),
+    email: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+    number: (val) => {
+        const clean = val.replace(/[\s\-\(\)]/g, '');
+        return /^[+]?[0-9]{10,14}$/.test(clean);
+    },
+    subject: (val) => val.length >= 3,
+    message: (val) => val.length >= 10
+};
+
+function validateSingleField(input, errorEl, validatorFn, errorMsg) {
+    if (!input) return false;
+    const val = input.value.trim();
+    if (val === '') {
+        input.classList.remove('is-invalid', 'is-valid');
+        if (errorEl) { errorEl.textContent = ''; errorEl.classList.remove('visible'); }
+        return false;
+    }
+    const isValid = validatorFn(val);
+    if (!isValid) {
+        input.classList.add('is-invalid');
+        input.classList.remove('is-valid');
+        if (errorEl) { errorEl.textContent = errorMsg; errorEl.classList.add('visible'); }
+    } else {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        if (errorEl) { errorEl.textContent = ''; errorEl.classList.remove('visible'); }
+    }
+    return isValid;
+}
+
+// Bind real-time input validation handlers
+if (nameInput) {
+    nameInput.addEventListener('blur', () => validateSingleField(nameInput, nameErr, validators.name, 'Name must be at least 2 letters.'));
+    nameInput.addEventListener('input', () => { if (nameInput.classList.contains('is-invalid')) validateSingleField(nameInput, nameErr, validators.name, 'Name must be at least 2 letters.'); });
+}
+if (emailInput) {
+    emailInput.addEventListener('blur', () => validateSingleField(emailInput, emailErr, validators.email, 'Please enter a valid email address (e.g. name@domain.com).'));
+    emailInput.addEventListener('input', () => { if (emailInput.classList.contains('is-invalid')) validateSingleField(emailInput, emailErr, validators.email, 'Please enter a valid email address (e.g. name@domain.com).'); });
+}
+if (numberInput) {
+    numberInput.addEventListener('blur', () => validateSingleField(numberInput, numberErr, validators.number, 'Please enter a valid mobile number (10–13 digits).'));
+    numberInput.addEventListener('input', () => { if (numberInput.classList.contains('is-invalid')) validateSingleField(numberInput, numberErr, validators.number, 'Please enter a valid mobile number (10–13 digits).'); });
+}
+if (subjectInput) {
+    subjectInput.addEventListener('blur', () => validateSingleField(subjectInput, subjectErr, validators.subject, 'Subject must be at least 3 characters.'));
+    subjectInput.addEventListener('input', () => { if (subjectInput.classList.contains('is-invalid')) validateSingleField(subjectInput, subjectErr, validators.subject, 'Subject must be at least 3 characters.'); });
+}
+if (messageInput) {
+    messageInput.addEventListener('blur', () => validateSingleField(messageInput, messageErr, validators.message, 'Message must be at least 10 characters long.'));
+    messageInput.addEventListener('input', () => { if (messageInput.classList.contains('is-invalid')) validateSingleField(messageInput, messageErr, validators.message, 'Message must be at least 10 characters long.'); });
+}
 
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('userName')?.value.trim() || '';
-        const email = document.getElementById('userEmail')?.value.trim() || '';
-        const number = document.getElementById('userNumber')?.value.trim() || '';
-        const subject = document.getElementById('userSubject')?.value.trim() || 'Project Inquiry';
-        const msg = document.getElementById('userMessage')?.value.trim() || '';
+        const isNameValid = validateSingleField(nameInput, nameErr, validators.name, 'Name must be at least 2 letters.');
+        const isEmailValid = validateSingleField(emailInput, emailErr, validators.email, 'Please enter a valid email address.');
+        const isNumberValid = validateSingleField(numberInput, numberErr, validators.number, 'Please enter a valid mobile number (10–13 digits).');
+        const isSubjectValid = validateSingleField(subjectInput, subjectErr, validators.subject, 'Subject must be at least 3 characters.');
+        const isMessageValid = validateSingleField(messageInput, messageErr, validators.message, 'Message must be at least 10 characters long.');
 
-        if (!name || !email || !number || !msg) {
+        if (!isNameValid || !isEmailValid || !isNumberValid || !isSubjectValid || !isMessageValid) {
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg error';
-                formStatusMsg.textContent = 'Please fill out your name, email, phone number, and message.';
+                formStatusMsg.textContent = 'Please correct the highlighted errors in the form before submitting.';
             }
             return;
         }
+
+        const name = nameInput?.value.trim() || '';
+        const email = emailInput?.value.trim() || '';
+        const number = numberInput?.value.trim() || '';
+        const subject = subjectInput?.value.trim() || '';
+        const msg = messageInput?.value.trim() || '';
 
         const submitBtn = document.getElementById('submitFormBtn');
         const btnText = submitBtn?.querySelector('.btn-text');
@@ -88,7 +160,7 @@ if (contactForm) {
             formStatusMsg.className = 'form-status-msg';
             formStatusMsg.style.display = 'block';
             formStatusMsg.style.color = '#8a8a8a';
-            formStatusMsg.textContent = 'Saving message to Realtime Database...';
+            formStatusMsg.textContent = 'Sending message.....';
         }
 
         const payload = {
@@ -148,7 +220,7 @@ if (contactForm) {
         if (saved) {
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg success';
-                formStatusMsg.textContent = '✓ Message saved to Realtime Database under User node!';
+                formStatusMsg.textContent = '✓ Message send';
             }
             contactForm.reset();
         } else {

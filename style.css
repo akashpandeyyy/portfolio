@@ -1489,3 +1489,28 @@ section {
         display: none;
     }
 }
+
+/* ─── FORM VALIDATION STYLES ───────────────────────────────── */
+.form-group input.is-invalid,
+.form-group textarea.is-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+.form-group input.is-valid,
+.form-group textarea.is-valid {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.field-error {
+    font-size: 11px;
+    color: #ef4444;
+    font-weight: 500;
+    margin-top: 4px;
+    display: none;
+}
+
+.field-error.visible {
+    display: block;
+}
