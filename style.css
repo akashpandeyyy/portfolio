@@ -92,7 +92,7 @@ a {
     }
 }
 
-/* ─── NOISE TEXTURE ──────────────────────────────────────────── */
+/* ─── NOISE TEXTURE & SPOTLIGHT ────────────────────────────────── */
 body::before {
     content: '';
     position: fixed;
@@ -101,6 +101,49 @@ body::before {
     pointer-events: none;
     z-index: 9999;
     opacity: 0.4;
+}
+
+.mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 650px;
+    height: 650px;
+    margin-left: -325px;
+    margin-top: -325px;
+    background: radial-gradient(circle, rgba(0, 80, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 50%;
+    transition: opacity 0.3s ease;
+}
+
+/* Card Spotlight Highlight Overlay */
+.glow-card, .project-card, .skill-category, .process-step, .currently-card, .active-intent-card, .about-card {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.glow-card::before, .project-card::before, .skill-category::before, .process-step::before, .currently-card::before, .active-intent-card::before {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y, 50%);
+    left: var(--mouse-x, 50%);
+    width: 350px;
+    height: 350px;
+    margin-left: -175px;
+    margin-top: -175px;
+    background: radial-gradient(circle, rgba(0, 80, 255, 0.16) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.glow-card:hover::before, .project-card:hover::before, .skill-category:hover::before, .process-step:hover::before, .currently-card:hover::before, .active-intent-card:hover::before {
+    opacity: 1;
 }
 
 /* ─── BUTTONS ────────────────────────────────────────────────── */

@@ -76,6 +76,64 @@ if (contactForm) {
     });
 }
 
+/* ── Dynamic Mouse Spotlight Glow ── */
+const spotlight = document.createElement('div');
+spotlight.className = 'mouse-spotlight';
+document.body.appendChild(spotlight);
+
+window.addEventListener('mousemove', (e) => {
+    if (typeof gsap !== 'undefined') {
+        gsap.to(spotlight, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.35,
+            ease: 'power2.out'
+        });
+    } else {
+        spotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    }
+}, { passive: true });
+
+/* ── Interactive 3D Card Hover & Cursor Spotlight Tilt ── */
+const tiltCards = document.querySelectorAll('.glow-card, .project-card, .skill-category, .process-step, .currently-card, .active-intent-card, .about-card');
+
+tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -4;
+        const rotateY = ((x - centerX) / centerX) * 4;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        if (typeof gsap !== 'undefined') {
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                transformPerspective: 1000,
+                duration: 0.3,
+                ease: 'power1.out'
+            });
+        }
+    });
+
+    card.addEventListener('mouseleave', () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        }
+    });
+});
+
 /* ── GSAP Animations ── */
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -165,7 +223,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         );
     });
 
-    /* Phone mockup subtle float & tilt animation */
+    /* Phone mockup subtle float animation */
     const phone = document.querySelector('.phone-mockup');
     if (phone) {
         gsap.to(phone, {
