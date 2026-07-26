@@ -1,3 +1,18 @@
+/* ── Anti-Inspect & Code Lock Protection ── */
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('keydown', (e) => {
+    if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(e.key)) ||
+        (e.ctrlKey && ['U', 'u', 'S', 's'].includes(e.key)) ||
+        (e.metaKey && e.altKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(e.key))
+    ) {
+        e.preventDefault();
+        return false;
+    }
+});
+
 /* ── Navbar scroll ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
