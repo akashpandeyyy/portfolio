@@ -1196,7 +1196,8 @@ section {
 
 /* ─── REVEAL ANIMATION BASE ──────────────────────────────────── */
 .reveal {
-    opacity: 0;
+    /* Base visibility fallback */
+    opacity: 1;
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */

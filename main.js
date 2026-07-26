@@ -48,11 +48,11 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     /* Hero entrance */
     const heroTl = gsap.timeline({ delay: 0.1 });
     heroTl
-        .from('#heroEyebrow', { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' })
-        .from('#heroHeadline', { y: 40, opacity: 0, duration: 0.7, ease: 'power2.out' }, '-=0.2')
-        .from('#heroSub', { y: 30, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
-        .from('#heroActions', { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2')
-        .from('#heroRight', { y: 30, opacity: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+        .fromTo('#heroEyebrow', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' })
+        .fromTo('#heroHeadline', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, '-=0.2')
+        .fromTo('#heroSub', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .fromTo('#heroActions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2')
+        .fromTo('#heroRight', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
 
     /* Scroll reveals — staggered within each parent */
     function revealGroup(selector, options = {}) {
@@ -60,18 +60,21 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         if (!elems.length) return;
 
         elems.forEach((el, i) => {
-            gsap.from(el, {
-                y: options.y ?? 40,
-                opacity: 0,
-                duration: options.duration ?? 0.7,
-                ease: options.ease ?? 'power2.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 88%',
-                    toggleActions: 'play none none none',
-                },
-                delay: (options.stagger ?? 0.08) * (i % (options.groupSize ?? 99)),
-            });
+            gsap.fromTo(el,
+                { y: options.y ?? 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: options.duration ?? 0.7,
+                    ease: options.ease ?? 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 92%',
+                        toggleActions: 'play none none none',
+                    },
+                    delay: (options.stagger ?? 0.08) * (i % (options.groupSize ?? 99)),
+                }
+            );
         });
     }
 
@@ -85,17 +88,20 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
     /* Generic .reveal (section headers, about, featured card, etc.) */
     gsap.utils.toArray('.reveal:not(.stat):not(.exp-item):not(.project-card):not(.skill-category):not(.process-step):not(.currently-card):not(.contact-card)').forEach(el => {
-        gsap.from(el, {
-            y: 32,
-            opacity: 0,
-            duration: 0.65,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 88%',
-                toggleActions: 'play none none none',
+        gsap.fromTo(el,
+            { y: 32, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.65,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 92%',
+                    toggleActions: 'play none none none',
+                }
             }
-        });
+        );
     });
 
     /* Phone mockup subtle float */
