@@ -73,7 +73,7 @@ if (contactForm) {
             formStatusMsg.className = 'form-status-msg';
             formStatusMsg.style.display = 'block';
             formStatusMsg.style.color = '#8a8a8a';
-            formStatusMsg.textContent = 'Sending message to Firebase...';
+            formStatusMsg.textContent = 'Saving message to Realtime Database...';
         }
 
         const payload = {
@@ -81,46 +81,59 @@ if (contactForm) {
             name: name,
             number: number,
             subject: subject,
-            msg: msg,
-            timestamp: new Date().toISOString()
+            msg: msg
         };
 
-        let savedSuccessfully = false;
+        let saved = false;
 
-        // 1. Try Cloud Firestore (Instant HTTP REST API connection)
-        if (window.firebaseDb && window.firebaseAddDoc && window.firebaseCollection) {
-            try {
-                await window.firebaseAddDoc(window.firebaseCollection(window.firebaseDb, "User"), payload);
-                savedSuccessfully = true;
-            } catch (fsErr) {
-                console.warn("Cloud Firestore save warning:", fsErr);
-            }
-        }
-
-        // 2. Try Realtime Database with 3.5s Timeout Race
+        // Strategy 1: Firebase Realtime Database SDK (User / {push_id})
         if (window.firebaseRtdb && window.firebaseRef && window.firebasePush && window.firebaseSet) {
             try {
                 const userRef = window.firebaseRef(window.firebaseRtdb, 'User');
                 const newUserRef = window.firebasePush(userRef);
 
                 const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('RTDB Timeout')), 3500)
+                    setTimeout(() => reject(new Error('RTDB Timeout')), 3000)
                 );
 
                 await Promise.race([
                     window.firebaseSet(newUserRef, payload),
                     timeoutPromise
                 ]);
-                savedSuccessfully = true;
+                saved = true;
             } catch (rtdbErr) {
-                console.warn("Realtime DB save warning/timeout:", rtdbErr);
+                console.warn("Realtime DB SDK write warning:", rtdbErr);
             }
         }
 
-        if (savedSuccessfully) {
+        // Strategy 2: Direct Realtime Database REST API (Ensures instant RTDB write even if SDK WebSocket hangs)
+        if (!saved) {
+            const rtdbUrls = [
+                "https://portfolio-d8ff9-default-rtdb.firebaseio.com/User.json",
+                "https://portfolio-d8ff9-default-rtdb.asia-southeast1.firebasedatabase.app/User.json"
+            ];
+
+            for (const url of rtdbUrls) {
+                try {
+                    const res = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                    if (res.ok) {
+                        saved = true;
+                        break;
+                    }
+                } catch (fetchErr) {
+                    console.warn("RTDB REST API endpoint error:", fetchErr);
+                }
+            }
+        }
+
+        if (saved) {
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg success';
-                formStatusMsg.textContent = '✓ Message sent & saved to Firebase successfully!';
+                formStatusMsg.textContent = '✓ Message saved to Realtime Database under User node!';
             }
             contactForm.reset();
         } else {
@@ -128,7 +141,7 @@ if (contactForm) {
             const mailtoUrl = `mailto:akashpandey2599@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Akash,\n\nName: ${name}\nEmail: ${email}\nPhone: ${number}\n\nMessage:\n${msg}`)}`;
             if (formStatusMsg) {
                 formStatusMsg.className = 'form-status-msg success';
-                formStatusMsg.textContent = '✓ Saved! Opening email client to complete sending...';
+                formStatusMsg.textContent = '✓ Message ready! Opening email client to send to Akash...';
             }
             setTimeout(() => { window.location.href = mailtoUrl; }, 400);
         }
